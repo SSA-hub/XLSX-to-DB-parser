@@ -7,10 +7,11 @@ with open('appsettings.json', 'r') as config_file: #параметры хран�
     connection_string = config['postgres']['connectionstring'] #connection string для подключения к БД
     if_exists_routes = config['if_exists_routes'] #что делать, если запись уже есть в Routes
     if_exists_route_details = config['if_exists_route_details'] #что делать, если запись уже есть в RouteDetails
+    path = config['xlsx_file_path'] #путь к файлу, данные из которого нужно преобразовать
 
 engine = create_engine(connection_string)
 
-razb_uch = pd.read_excel("razb_uch.xlsx") #считываем данные из .xlsx файла в pandas DataFrame
+razb_uch = pd.read_excel(path) #считываем данные из .xlsx файла в pandas DataFrame
 
 #разбиваем данные на два DataFrame-а, чтобы записать каждый из них в соответсвующую таблицу
 #DataFrame маршрутов
